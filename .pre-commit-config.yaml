@@ -33,13 +33,13 @@ repos:
       entry: pyright
       language: system
       types: [python]
-      args: [hypothesis_torch/]
+      args: [.]
     - id: mypy
       name: mypy
       entry: mypy
       language: system
       types: [python]
-      args: [hypothesis_torch/]
+      args: [.]
     - id: toml-sort
       name: toml-sort
       entry: toml-sort
