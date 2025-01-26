@@ -34,12 +34,14 @@ repos:
       language: system
       types: [python]
       args: [.]
+      pass_filenames: false
     - id: mypy
       name: mypy
       entry: mypy
       language: system
       types: [python]
       args: [.]
+      pass_filenames: false
     - id: toml-sort
       name: toml-sort
       entry: toml-sort
