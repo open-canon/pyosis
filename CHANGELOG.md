@@ -1,6 +1,19 @@
 # CHANGELOG
 
 
+## v0.1.1 (2025-01-26)
+
+### Build System
+
+- Do not pass redundant filenames
+  ([`f29bc69`](https://github.com/open-canon/pyosis/commit/f29bc69a8e65000179ff27d3bb27da41cb220ed3))
+
+### Code Style
+
+- Fix toml sort
+  ([`c3164eb`](https://github.com/open-canon/pyosis/commit/c3164eb4c648785eb94833f339702f2d78216e1b))
+
+
 ## v0.1.0 (2025-01-11)
 
 ### Build System
