@@ -6,8 +6,7 @@ Official OSIS schema reference guide: https://crosswire.org/osis/OSIS%202.1.1%20
 from __future__ import annotations
 
 import datetime
-from typing import ClassVar, List, Literal
-from typing import Type as TypingType
+from typing import ClassVar, Literal
 
 import pydantic
 import pydantic_xml
@@ -28,7 +27,17 @@ class Milestoneable(pydantic_xml.BaseXmlModel):
 
 
 class Canonical(pydantic_xml.BaseXmlModel, strict=False):
-    canonical: bool | None = pydantic_xml.attr(default=None)
+    """OSIS element with a canonical attribute."""
+
+    canonical: bool | None = pydantic_xml.attr(
+        default=None,
+        description=(
+            "A boolean value indicating whether the element is canonical. "
+            "If None, the element inherits the canonical value of its parent."
+            "A canonical element indicates that the content is part of the original text, "
+            "while a non-canonical element may be commentary, footnote, or other non-original content."
+        ),
+    )
 
     __canonical_classes__: ClassVar[list[type[Canonical]]] = []
 
@@ -41,11 +50,16 @@ class Canonical(pydantic_xml.BaseXmlModel, strict=False):
 
 
 class A(Canonical, tag="a", nsmap=NSMAP):
+    """The `a` element is similar to the HTML a element, and likewise may be used to encode links within a document. This eases integration of OSIS documents into the Web environment."""
+
     href: str = pydantic_xml.attr()
     content: str = ""
 
 
-class Abbreviation(Canonical, Milestoneable, tag="abbr", nsmap=NSMAP): ...
+class Abbreviation(Canonical, Milestoneable, tag="abbr", nsmap=NSMAP):
+    """The `abbr` element marks a portion of text as an abbreviation."""
+
+    content: str = ""
 
 
 class CatchWord(Canonical, tag="catchWord", nsmap=NSMAP): ...
@@ -470,16 +484,31 @@ class XmlList(Canonical, tag="list", nsmap=NSMAP):
 
 
 class Cell(Canonical, tag="cell", nsmap=NSMAP):
+    """The `cell` element is used to mark a cell in a table.
+
+    It is typically used to present information in a structured format, such as a list of items or a comparison of
+    values. The `cell` element can also be used to mark the beginning of a new section or division within a larger work.
+    """
+
     align: Literal["left", "right", "center", "justify", "start", "end"] = pydantic_xml.attr()
     content: str  # TODO: Support parsing arbitrary content
 
 
 class Row(Canonical, tag="row", nsmap=NSMAP):
+    """The `row` element is used to mark a row of data in a table."""
+
     type: Literal["label", "data"] = pydantic_xml.attr()
     cells: list[Cell] = pydantic_xml.element(tag="cell")
 
 
 class Table(Canonical, tag="table", nsmap=NSMAP):
+    """The `table` element is used to mark a table of data.
+
+    It is typically used to present information in a structured format, such as a list of items or a comparison of
+    values. The `table` element can also be used to mark the beginning of a new section or division within a larger
+    work.
+    """
+
     num_columns: int = pydantic_xml.attr(name="cols")
     num_rows: int = pydantic_xml.attr(name="rows")
 
@@ -488,6 +517,12 @@ class Table(Canonical, tag="table", nsmap=NSMAP):
 
 
 class Div(Canonical, tag="div", nsmap=NSMAP):
+    """The `div` element is used to mark a division of text.
+
+    It is typically used to group related content together, such as chapters, sections, or paragraphs. The `div`
+    element can also be used to mark the beginning of a new book or work within a larger text.
+    """
+
     content: str = ""
     type: (
         Literal[
@@ -573,6 +608,8 @@ class Div(Canonical, tag="div", nsmap=NSMAP):
 
 
 class Chapter(Canonical, Milestoneable, tag="chapter", nsmap=NSMAP):
+    """The `chapter` element is used to mark the beginning of a new chapter in a text. It is typically used in conjunction with the `div` element to indicate the start of a new section or division within a larger work."""
+
     content: str = ""
     chapter_title: str = pydantic_xml.attr(default="")
     heads: list[Head] = pydantic_xml.element(default_factory=list)
@@ -620,6 +657,8 @@ class OsisText(Canonical, tag="osisText", nsmap=NSMAP):
 
 
 class Osis(Canonical, tag="osis", nsmap=NSMAP):
+    """The root element of an OSIS XML document."""
+
     title_pages: list[TitlePage] = pydantic_xml.element(default_factory=list)
     osis_text: OsisText = pydantic_xml.element()
 
