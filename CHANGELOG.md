@@ -1,6 +1,29 @@
 # CHANGELOG
 
 
+## v0.2.0 (2025-05-14)
+
+### Build System
+
+- Fix pyright
+  ([`f17d6c7`](https://github.com/open-canon/pyosis/commit/f17d6c705c135149b467a5da4f3c959a0eb1e02f))
+
+### Chores
+
+- Fix versions
+  ([`2f5877d`](https://github.com/open-canon/pyosis/commit/2f5877d38a4d8bfae8bbbb84b49dc9cf67d04cf9))
+
+### Documentation
+
+- Update documentation
+  ([`0b5ecca`](https://github.com/open-canon/pyosis/commit/0b5ecca962830a13b8ead1b2d7271add22dd3317))
+
+### Features
+
+- Switch to auto-generated xsdata schema
+  ([`bea7553`](https://github.com/open-canon/pyosis/commit/bea7553db6432808945392366bde93f6cae85ca4))
+
+
 ## v0.1.1 (2025-01-26)
 
 ### Build System
