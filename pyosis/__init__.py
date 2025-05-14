@@ -6,4 +6,4 @@ __version__ = "0.1.1"
 
 from pyosis import generated as generated
 from pyosis.generated import *
-from pyosis.serialization import OsisXML
+from pyosis.serialization import OsisXML as OsisXML

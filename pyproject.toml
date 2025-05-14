@@ -10,6 +10,8 @@ dependencies = [
     "pydantic-xml[lxml]==2.14.1",
     "pydantic>2.0.0,<=2.10.4",
     "pydantic_extra_types[pycountry]==2.10.4",
+    "xsdata-pydantic==25.4",
+    "xsdata==25.4",
 ]
 requires-python = ">=3.9"
 authors = [{name = "Andrew P. Sansom", email = "andrew@euleriancircuit.com"}]
@@ -61,7 +63,6 @@ dev = [
     "pytest==8.3.4",
     "ruff==0.8.6",
     "toml-sort==0.24.2",
-    "xsdata==25.4",
 ]
 docs = [
     "mkdocs-autolinks-plugin==0.7.1",
@@ -78,14 +79,21 @@ Homepage = "https://github.com/open-canon/pyosis"
 Issues = "https://github.com/open-canon/pyosis/issues"
 Repository = "https://github.com/open-canon/pyosis.git"
 
+[tool.mypy]
+exclude = ["generated"]
+
 [[tool.mypy.overrides]]
 ignore_missing_imports = true
 module = ["annotated_types"]
 
+[tool.pyright]
+exclude = ["**/generated"]
+include = ["pyosis"]
+
 [tool.ruff]
+exclude = ["generated"]
 line-length = 120
 preview = true
-exclude = ["pyosis/generated"]
 
 [tool.ruff.lint]
 ignore = ["D205", "F401", "PT009", "S101"]

@@ -20,14 +20,16 @@ repos:
       language: system
       types: [python]
       files: \.py$
-      args: [check, --fix]
+      args: [check, --fix, .]
+      pass_filenames: false
     - id: ruff-format
       name: ruff-format
       entry: ruff
       language: system
       types: [python]
       files: \.py$
-      args: [format]
+      args: [format, .]
+      pass_filenames: false
     - id: pyright
       name: pyright
       entry: pyright
