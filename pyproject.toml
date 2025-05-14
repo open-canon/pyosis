@@ -9,6 +9,9 @@ dynamic = ["version"]
 dependencies = [
     "pydantic-xml[lxml]==2.14.1",
     "pydantic>2.0.0,<=2.10.4",
+    "pydantic_extra_types[pycountry]==2.10.4",
+    "xsdata-pydantic==24.5",
+    "xsdata==25.4",
 ]
 requires-python = ">=3.9"
 authors = [{name = "Andrew P. Sansom", email = "andrew@euleriancircuit.com"}]
@@ -76,11 +79,19 @@ Homepage = "https://github.com/open-canon/pyosis"
 Issues = "https://github.com/open-canon/pyosis/issues"
 Repository = "https://github.com/open-canon/pyosis.git"
 
+[tool.mypy]
+exclude = ["generated"]
+
 [[tool.mypy.overrides]]
 ignore_missing_imports = true
 module = ["annotated_types"]
 
+[tool.pyright]
+exclude = ["**/generated"]
+include = ["pyosis"]
+
 [tool.ruff]
+exclude = ["generated"]
 line-length = 120
 preview = true
 
