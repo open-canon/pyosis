@@ -9,6 +9,7 @@ dynamic = ["version"]
 dependencies = [
     "pydantic-xml[lxml]==2.14.1",
     "pydantic>2.0.0,<=2.10.4",
+    "pydantic_extra_types[pycountry]==2.10.4",
 ]
 requires-python = ">=3.9"
 authors = [{name = "Andrew P. Sansom", email = "andrew@euleriancircuit.com"}]
@@ -60,6 +61,7 @@ dev = [
     "pytest==8.3.4",
     "ruff==0.8.6",
     "toml-sort==0.24.2",
+    "xsdata==25.4",
 ]
 docs = [
     "mkdocs-autolinks-plugin==0.7.1",
@@ -83,6 +85,7 @@ module = ["annotated_types"]
 [tool.ruff]
 line-length = 120
 preview = true
+exclude = ["pyosis/generated"]
 
 [tool.ruff.lint]
 ignore = ["D205", "F401", "PT009", "S101"]
