@@ -103,6 +103,7 @@ select = ["ANN", "D", "E", "F", "FURB", "I", "N", "PERF", "PTH", "RUF", "UP", "W
 convention = "google"
 
 [tool.semantic_release]
+allow_zero_version = true
 build_command = "python -m pip install build && python -m build"
 major_on_zero = false
 version_variables = [
