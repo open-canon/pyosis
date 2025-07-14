@@ -11,7 +11,7 @@ dependencies = [
     "pydantic>2.0.0,<=2.10.4",
     "pydantic_extra_types[pycountry]==2.10.4",
     "xsdata-pydantic==24.5",
-    "xsdata==25.4",
+    "xsdata==25.7",
 ]
 requires-python = ">=3.9"
 authors = [{name = "Andrew P. Sansom", email = "andrew@euleriancircuit.com"}]
