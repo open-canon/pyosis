@@ -1,6 +1,6 @@
 """Python tools for serializing and using OSIS files."""
 
-__version__ = "0.2.0"
+__version__ = "0.2.1"
 
 # ruff: noqa: F403
 
